@@ -1,0 +1,200 @@
+<div class="info-container">
+  <div *ngIf="false">
+  <div class="section-buttons">
+    <button class="section-btn categories-btn" (click)="showSection('categories')">Categories</button>
+    <button class="section-btn products-btn" (click)="showSection('produits')">Products</button>
+  </div>
+
+  <div *ngIf="currentSection === 'categories'" class="section-content">
+    <div class="section-header">
+      <h3>Categories List</h3>
+      <button class="create-btn m-2 bg-green-600 p-2 rounded-md" (click)="openCreateModal('category')">
+        <i class="material-icons">add</i>
+        <p> Add Category</p>
+      </button>
+    </div>
+    <div class="list-container">
+      <div *ngFor="let cat of categories" class="list-item">
+        <span class="item-name">{{cat.name}}</span>
+        <div class="action-buttons">
+          <button (click)="openUpdateModal('category', cat)" class="update-btn">
+            <i class="material-icons">edit</i>
+          </button>
+          <button (click)="confirmDelete('category', cat.idCat)" class="delete-btn">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="currentSection === 'produits'" class="section-content">
+    <div class="section-header">
+      <h3>Products List</h3>
+      
+    </div>
+    <div class="search-container">
+      <div class="search-group">
+        <i class="material-icons">category</i>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search by category..." 
+          [formControl]="searchControl"
+        >
+      </div>
+      <div class="search-group">
+        <i class="material-icons">search</i>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search by name..." 
+          [formControl]="searchControl2"
+        >
+      </div>
+      
+      <button 
+        class="clear-btn" 
+        type="button" 
+        (click)="clearSearch()"
+      >
+        <i class="material-icons">clear</i>
+      </button>
+    </div>
+    <button class="create-btn bg-green-600 m-1 rounded-md p-2" (click)="openCreateModal('product')">
+        <i class="material-icons ">add</i>
+        <p>Add Product</p>
+      </button>
+    <div class="list-container">
+      <div *ngFor="let prod of products" class="list-item product-item">
+        <div class="product-info">
+          <span class="item-name">{{prod.name}}</span>
+          <div class="product-details">
+            <span class="detail-item">Quantity: {{prod.qte}}</span>
+            <span class="detail-item">Price: {{prod.price}}</span>
+            <span class="detail-item">Category: {{prod.categorie?.name}}</span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button (click)="openUpdateModal('product', prod)" class="update-btn">
+            <i class="material-icons">edit</i>
+          </button>
+          <button (click)="confirmDelete('product', prod.idPro)" class="delete-btn">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+  <div *ngIf="error" class="error-message">
+    {{error}}
+  </div>
+
+  <app-update-modal
+    [isOpen]="isModalOpen"
+    [type]="modalType"
+    [item]="selectedItem"
+    (close)="closeModal()"
+    (updateSuccess)="onUpdateSuccess()"
+  ></app-update-modal>
+
+  <app-create-model
+    [isOpen]="isCreateModalOpen"
+    [type]="createModalType"
+    (close)="closeCreateModal()"
+    (createSuccess)="onCreateSuccess()"
+  ></app-create-model>
+  <mat-tab-group class="w-full max-w-md bg-slate-50 dark:bg-gray-800 rounded-xl shadow-lg transition-colors duration-300" [color]="'accent'">
+    <mat-tab label="Category">
+      <div class="section-content" >
+
+      
+      <div class="section-header">
+      <h3>Categories List</h3>
+      <button class="create-btn m-2 bg-green-600 p-2 rounded-md" (click)="openCreateModal('category')">
+        <i class="material-icons">add</i>
+        <p> Add Category</p>
+      </button>
+    </div>
+    <div class="list-container">
+      <div *ngFor="let cat of categories" class="list-item">
+        <span class="item-name">{{cat.name}}</span>
+        <div class="action-buttons">
+          <button (click)="openUpdateModal('category', cat)" class="update-btn">
+            <i class="material-icons">edit</i>
+          </button>
+          <button (click)="confirmDelete('category', cat.idCat)" class="delete-btn">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+    </mat-tab>
+    <mat-tab label="produit">
+      <div class="section-content">
+ <div class="section-header">
+      <h3>Products List</h3>
+      
+    </div>
+    <div class="search-container">
+      <div class="search-group">
+        <i class="material-icons">category</i>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search by category..." 
+          [formControl]="searchControl"
+        >
+      </div>
+      <div class="search-group">
+        <i class="material-icons">search</i>
+        <input 
+          type="text" 
+          class="search-input" 
+          placeholder="Search by name..." 
+          [formControl]="searchControl2"
+        >
+      </div>
+      
+      <button 
+        class="clear-btn" 
+        type="button" 
+        (click)="clearSearch()"
+      >
+        <i class="material-icons">clear</i>
+      </button>
+    </div>
+    <button class="create-btn bg-green-600 m-1 rounded-md p-2" (click)="openCreateModal('product')">
+        <i class="material-icons ">add</i>
+        <p>Add Product</p>
+      </button>
+    <div class="list-container">
+      <div *ngFor="let prod of products" class="list-item product-item">
+        <div class="product-info">
+          <span class="item-name">{{prod.name}}</span>
+          <div class="product-details">
+            <span class="detail-item">Quantity: {{prod.qte}}</span>
+            <span class="detail-item">Price: {{prod.price}}</span>
+            <span class="detail-item">Category: {{prod.categorie?.name}}</span>
+          </div>
+        </div>
+        <div class="action-buttons">
+          <button (click)="openUpdateModal('product', prod)" class="update-btn">
+            <i class="material-icons">edit</i>
+          </button>
+          <button (click)="confirmDelete('product', prod.idPro)" class="delete-btn">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
+      </div>
+    </div>
+      </div>
+   
+    </mat-tab>
+
+  </mat-tab-group>
+</div>
+
+<app-notification #notification></app-notification>

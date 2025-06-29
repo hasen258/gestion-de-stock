@@ -1,0 +1,52 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="closeModal()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h2>{{ type === 'product' ? 'Update Product' : 'Update Category' }}</h2>
+      <button class="close-btn" (click)="closeModal()">
+        <i class="material-icons">close</i>
+      </button>
+    </div>
+
+    <div class="modal-body">
+      <form (ngSubmit)="onSubmit()">
+        <div class="form-group" *ngIf="type === 'product'">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="item.name" placeholder="fgd" value="5555" name="name" required>
+        </div>
+
+        <div class="form-group" *ngIf="type === 'product'">
+          <label>Quantity</label>
+          <input type="number" [(ngModel)]="item.qte" name="qte" required>
+        </div>
+
+        <div class="form-group" *ngIf="type === 'product'">
+          <label>Price</label>
+          <input type="number" [(ngModel)]="item.price" name="price" required>
+        </div>
+        <div *ngIf="type === 'product'"  class="form-group" >
+          <label for="idCat">Category</label>
+          <select 
+            id="idCat" 
+            [(ngModel)]="item.categorie"
+            class="form-control"
+          >
+            <option *ngFor="let cat of categories" [value]="cat">
+              {{cat.name}}
+            </option>
+          </select>
+        </div>
+        
+
+        <div class="form-group" *ngIf="type === 'category'">
+          <label>Name</label>
+          <input type="text" [(ngModel)]="updatedItem.name" name="namecat" required>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="cancel-btn" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="submit-btn">Update</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,38 @@
+.unique-card {
+  background: #232946;
+  color: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(30, 41, 59, 0.25);
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  min-width: 260px;
+  max-width: 320px;
+  transition: transform 0.2s, background 0.3s;
+}
+.unique-card:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(30, 41, 59, 0.35);
+}
+.unique-card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.unique-card-message {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.10);
+}
+@media (prefers-color-scheme: dark) {
+  .unique-card {
+    background: #12172b;
+    color: #e0e7ef;
+    box-shadow: 0 8px 32px rgba(14, 165, 233, 0.18);
+  }
+  .unique-card-title, .unique-card-message {
+    color: #e0e7ef;
+  }
+} 

@@ -1,0 +1,14 @@
+.form-control {
+    @apply w-80 mx-3 px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent inline-block;
+  }
+.submit-btn {
+    @apply px-6 py-3 border-none rounded-lg font-medium cursor-pointer bg-blue-600 dark:bg-blue-500 text-white transition-all duration-200 hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed;
+  }
+  
+.submit-btn:hover:not(:disabled) {
+    @apply bg-blue-700 dark:bg-blue-600;
+  }
+  
+.submit-btn:disabled {
+    @apply bg-gray-400 dark:bg-gray-600 cursor-not-allowed;
+  } 

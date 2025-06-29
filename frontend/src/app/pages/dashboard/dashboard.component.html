@@ -1,0 +1,22 @@
+<h1 class="text-2xl font-bold text-center mt-8 mb-4  dark:text-slate-100">Dashboard Statistics</h1>
+
+
+
+<div *ngIf="errorMessage" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4 mx-auto max-w-md">
+  <strong class="font-bold">Error: </strong>
+  <span class="block sm:inline">{{ errorMessage }}</span>
+</div>
+
+<div class="flex flex-row w-full mb-8 pl-5">
+  <div class="flex-1 mr-8">
+    <app-category-chart [chartData]="categoryChartData" [chartLabels]="categoryChartLabels"></app-category-chart>
+    <app-product-chart [chartData]="productChartData" [chartLabels]="productChartLabels"></app-product-chart>
+  </div>
+  
+  <div class="flex flex-col items-end justify-center space-y-4 mr-8" style="min-width:260px;">
+    <app-card [title]="'UserName'" [message]="user.name"></app-card>
+    <app-card [title]="'Number categories'" [message]="numCat.toString()"></app-card>
+    <app-card [title]="'Number products'" [message]="numPro.toString()"></app-card>
+  </div>
+</div>
+

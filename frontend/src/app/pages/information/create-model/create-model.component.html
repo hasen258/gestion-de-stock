@@ -1,0 +1,106 @@
+<div class="modal" *ngIf="isOpen">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{{ type === 'category' ? 'Ajouter une catégorie' : 'Ajouter un produit' }}</h2>
+      <button class="close-btn" (click)="onClose()" title="Fermer">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <form (ngSubmit)="onSubmit()" class="form">
+      <div class="form-group">
+        <label for="name">Nom *</label>
+        <input 
+          type="text" 
+          id="name" 
+          [(ngModel)]="name" 
+          name="name"
+          placeholder="Entrer le nom"
+          class="form-control"
+          [class.border-red-500]="!name && error"
+        >
+        <div *ngIf="!name && error" class="text-red-500  text-sm mt-1">
+          Le nom est requis
+        </div>
+      </div>
+
+      <ng-container *ngIf="type === 'product'">
+        <div class="form-group">
+          <label for="qte">Quantité *</label>
+          <input 
+            type="number" 
+            id="qte" 
+            [(ngModel)]="qte" 
+            name="qte"
+            placeholder="Entrer la quantité"
+            class="form-control"
+            min="1"
+            [class.border-red-500]="(qte < 1 || !qte) && error"
+          >
+          <div *ngIf="(qte < 1 || !qte) && error" class="text-red-500 text-sm mt-1">
+            La quantité doit être au moins 1
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Prix *</label>
+          <input 
+            type="number" 
+            id="price" 
+            [(ngModel)]="price" 
+            name="price"
+            placeholder="Entrer le prix"
+            class="form-control"
+            step="0.01"
+            min="0.01"
+            [class.border-red-500]="(price < 0.01 || !price) && error"
+          >
+          <div *ngIf="(price < 0.01 || !price) && error" class="text-red-500 text-sm mt-1">
+            Le prix doit être supérieur à 0
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="categorie">Catégorie *</label>
+          <select 
+            id="categorie" 
+            [(ngModel)]="categorie"
+            name="categorie"
+            class="form-control"
+            [class.border-red-500]="!categorie && error"
+          >
+            <option value="">Sélectionner une catégorie</option>
+            <option *ngFor="let cat of categories" [ngValue]="cat">
+              {{cat.name}}
+            </option>
+          </select>
+          <div *ngIf="!categorie && error" class="text-red-500 text-sm mt-1">
+            La catégorie est requise
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="error" class="error-message">
+        <div class="flex items-center">
+          <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+          </svg>
+          {{error}}
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" (click)="onClose()">Annuler</button>
+        <button type="submit" class="submit-btn">
+          <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
+          {{ type === 'category' ? 'Ajouter une catégorie' : 'Ajouter un produit' }}
+        </button>
+      </div>
+    </form>
+  </div>
+  <app-notification #notification></app-notification>
+</div> 

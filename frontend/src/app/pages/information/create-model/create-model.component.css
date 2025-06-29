@@ -1,0 +1,98 @@
+.modal {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  z-index: 1000 !important;
+}
+
+.modal-content {
+  @apply bg-white dark:bg-gray-800 rounded-xl w-11/12 max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl transition-colors duration-200;
+}
+
+.modal-header {
+  @apply flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700;
+}
+
+.modal-header h2 {
+  @apply m-0 text-2xl font-semibold text-gray-900 dark:text-white transition-colors duration-200;
+}
+
+.close-btn {
+  @apply bg-transparent border-none cursor-pointer p-2 text-gray-500 dark:text-gray-400 rounded-md transition-all duration-200 hover:text-gray-700 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700;
+}
+
+.form {
+  @apply p-6;
+}
+
+.form-group {
+  @apply mb-6;
+}
+
+.form-group label {
+  @apply block mb-2 font-medium text-gray-700 dark:text-gray-300 transition-colors duration-200;
+}
+
+.form-control {
+  @apply w-full px-3 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-base bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent;
+}
+
+.form-control:focus {
+  @apply outline-none border-blue-500 dark:border-blue-400 shadow-lg shadow-blue-500/25 dark:shadow-blue-400/25;
+}
+
+.form-control.border-red-500 {
+  border-color: rgb(239 68 68) !important;
+}
+
+.dark .form-control.border-red-500 {
+  border-color: rgb(248 113 113) !important;
+}
+
+.form-control.border-red-500:focus {
+  border-color: rgb(239 68 68) !important;
+  box-shadow: 0 0 0 3px rgb(239 68 68 / 0.25) !important;
+}
+
+.dark .form-control.border-red-500:focus {
+  border-color: rgb(248 113 113) !important;
+  box-shadow: 0 0 0 3px rgb(248 113 113 / 0.25) !important;
+}
+
+.text-red-500 {
+  color: rgb(239 68 68) !important;
+}
+
+.dark .text-red-500 {
+  color: rgb(248 113 113) !important;
+}
+
+.error-message {
+  @apply text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-3 mb-4 text-sm transition-colors duration-200;
+}
+
+.form-actions {
+  @apply flex justify-end gap-4 mt-8;
+}
+
+.cancel-btn {
+  @apply px-6 py-3 border-none rounded-lg font-medium cursor-pointer bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all duration-200 hover:bg-gray-200 dark:hover:bg-gray-600;
+}
+
+.submit-btn {
+  @apply px-6 py-3 border-none rounded-lg font-medium cursor-pointer bg-blue-600 dark:bg-blue-500 text-white transition-all duration-200 hover:bg-blue-700 dark:hover:bg-blue-600 disabled:bg-gray-400 dark:disabled:bg-gray-600 disabled:cursor-not-allowed;
+}
+
+.submit-btn:hover:not(:disabled) {
+  @apply bg-blue-700 dark:bg-blue-600;
+}
+
+.submit-btn:disabled {
+  @apply bg-gray-400 dark:bg-gray-600 cursor-not-allowed;
+} 

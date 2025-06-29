@@ -1,0 +1,47 @@
+:host {
+  position: fixed;
+  top: 1.5rem;
+  right: 2rem;
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 90vw;
+  display: block;
+}
+
+.notification-box {
+  background: var(--notif-bg, #f1f5f9);
+  color: var(--notif-color, #222);
+  border: 2px solid var(--notif-border, #000);
+  border-radius: 0.75rem;
+  padding: 1.25rem 2rem;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  animation: fadeIn 0.3s;
+  transition: background 0.3s, color 0.3s, border 0.3s;
+}
+
+.notification-box h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.notification-box p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .notification-box {
+    --notif-bg: #23272f;
+    --notif-color: #f1f5f9;
+    --notif-border: #444;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.45);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}

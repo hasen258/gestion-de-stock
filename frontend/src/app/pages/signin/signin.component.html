@@ -1,0 +1,77 @@
+<div class="w-8/12  min-h-screen mx-auto bg-gray-100 dark:bg-gray-900 flex items-center justify-center p-4 transition-colors duration-300">
+  <mat-tab-group class="w-full max-w-md bg-slate-50 dark:bg-gray-800 rounded-xl shadow-lg transition-colors duration-300" [color]="'accent'">
+    <mat-tab label="Login">
+      <form [formGroup]="loginForm"  class="p-6 space-y-4 items-center">
+        <div class="flex flex-col items-center justify-center w-full mt-4 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" class="mb-4" viewBox="0 0 20 20"><path fill-rule="evenodd" class="fill-black dark:fill-slate-50" d="M20 9c0 .55-.45 1-1 1h-2v2c0 .55-.45 1-1 1s-1-.45-1-1v-2h-2c-.55 0-1-.45-1-1s.45-1 1-1h2V6c0-.55.45-1 1-1s1 .45 1 1v2h2c.55 0 1 .45 1 1zM4 8h3V3H4v5zm-2 9h5v-7H2v7zm14-2c-.55 0-1 .45-1 1v1H9V6h3c.55 0 1-.45 1-1s-.45-1-1-1H9V2c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v6H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h15c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1z" /></svg>
+          <h1 class="text-xl font-semibold text-gray-900 dark:text-white font-['Inter']">Login</h1>
+        </div>
+
+        <mat-form-field   class="w-full">
+          <mat-label class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Email</mat-label>
+          <input matInput formControlName="email" type="email" required class="text-gray-900 dark:text-white transition-colors duration-300" />
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Email is required</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Please enter a valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field   class="w-full">
+          <mat-label class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Password</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required class="text-gray-900 dark:text-white transition-colors duration-300" />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" class="text-gray-500 dark:text-gray-400 transition-colors duration-300">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Password is required</mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="text-red-500 dark:text-red-400 text-sm mb-4 transition-colors duration-300">
+          {{ error }}
+        </div>
+        <button (click)="login()" mat-raised-button color="accent" class="w-full transition-colors duration-300" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+      </form>
+    </mat-tab>
+
+    <mat-tab label="Sign Up">
+      <form [formGroup]="signupForm"  class="p-6 space-y-4">
+        <div class="flex flex-col items-center justify-center w-full mt-4 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100px" height="100px" class="mb-4" viewBox="0 0 20 20"><path fill-rule="evenodd" class="fill-black dark:fill-slate-50" d="M20 9c0 .55-.45 1-1 1h-2v2c0 .55-.45 1-1 1s-1-.45-1-1v-2h-2c-.55 0-1-.45-1-1s.45-1 1-1h2V6c0-.55.45-1 1-1s1 .45 1 1v2h2c.55 0 1 .45 1 1zM4 8h3V3H4v5zm-2 9h5v-7H2v7zm14-2c-.55 0-1 .45-1 1v1H9V6h3c.55 0 1-.45 1-1s-.45-1-1-1H9V2c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v6H1c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h15c.55 0 1-.45 1-1v-2c0-.55-.45-1-1-1z" /></svg>
+          <h1 class="text-xl font-semibold text-gray-900 dark:text-white font-['Inter']">Create Account</h1>
+        </div>
+
+        <mat-form-field   class="w-full">
+          <mat-label class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Name</mat-label>
+          <input matInput formControlName="name" required class="text-gray-900 dark:text-white transition-colors duration-300" />
+          <mat-error *ngIf="signupForm.get('name')?.hasError('required')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Name is required</mat-error>
+        </mat-form-field>
+
+        <mat-form-field   class="w-full">
+          <mat-label class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Email</mat-label>
+          <input matInput formControlName="email" type="email" required class="text-gray-900 dark:text-white transition-colors duration-300" />
+          <mat-error *ngIf="signupForm.get('email')?.hasError('required')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Email is required</mat-error>
+          <mat-error *ngIf="signupForm.get('email')?.hasError('email')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Please enter a valid email</mat-error>
+        </mat-form-field>
+
+        <mat-form-field   class="w-full">
+          <mat-label class="text-gray-700 dark:text-gray-300 transition-colors duration-300">Password</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" required class="text-gray-900 dark:text-white transition-colors duration-300" />
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button" class="text-gray-500 dark:text-gray-400 transition-colors duration-300">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('required')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Password is required</mat-error>
+          <mat-error *ngIf="signupForm.get('password')?.hasError('minlength')" class="text-red-500 dark:text-red-400 transition-colors duration-300">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
+
+        <div *ngIf="error" class="text-red-500 dark:text-red-400 text-sm mb-4 transition-colors duration-300">
+          {{ error }}
+        </div>
+
+        <button mat-raised-button (click)="signup()" color="accent" class="w-full transition-colors duration-300" type="submit" [disabled]="signupForm.invalid">
+          Sign Up
+        </button>
+      </form>
+    </mat-tab>
+  </mat-tab-group>
+  <app-notification #notification></app-notification>
+</div>

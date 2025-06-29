@@ -1,0 +1,15 @@
+
+<h1 class="text-2xl font-bold text-center mt-8 mb-4 text-gray-900 dark:text-white">Détails</h1>
+<div class="flex flex-col items-center justify-center w-full mb-8">
+  <img [src]="user.pathimage || '/assets/imgprof2.png'" alt="Profile Image" class="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md mb-4" />
+  <div class="bg-slate-50 dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-md space-y-6">
+    <div>
+      <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Nom</label>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white dark:border-gray-600">{{user.name}}</div>
+    </div>
+    <div>
+      <label class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">Email</label>
+      <div class="w-full px-4 py-2 border border-gray-300 rounded-md bg-gray-100 dark:bg-gray-700 dark:text-white dark:border-gray-600">{{user.email}}</div>
+    </div>
+    
+</div>
